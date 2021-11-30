@@ -4,7 +4,7 @@ Signing service for multisig Stellar hotwallet.
 
 The MSS needs to be deployed on your own infrastructure or cloud provider. A Google Cloud Account is required as this signer services makes use of Google's cloud-hosted hardware security module, Cloud HSM to encrypt the stellar private key.
 
-We have included instructions for deploying easily deploying the MSS via Heroku, but the service can be deployed easily as a standard Django web app.
+We have included instructions for easily deploying the MSS via Heroku, but the service can be deployed easily as a standard Django web app.
 
 Once deployed, you will run through the configuration steps to create the Stellar private keypair that will form part of your 2/3 Multisig hot wallet. The second of the three keys is a backup key that you will need to create and store securely and the third key is on the Rehive Stellar Extension.
 
