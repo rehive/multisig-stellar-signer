@@ -38,12 +38,7 @@ Configure the service as described in the "Configuration: Initial Setup" section
 
 
 ## Deployment
-We have provided instructions for easily deploying to Heroku below, but the service can be deployed easily as a standard Django web app. If you do not wish to make use of the Heroku deployment, you will need to remove `django-heroku` from requirements.txt and the following lines need to be removed from src/config/settings.py:
-```
-import django_heroku
-django_heroku.settings(locals())
-```
-You will then also need to make sure to run your own postgres database and configure the connection in django settings. With the heroku deployment described below, the database setup as well as django static files deployment is taken care of automatcially.
+We have provided instructions for easily deploying to Heroku below, but the service can be deployed easily as a standard Django web app. If you do not wish to make use of the Heroku deployment, you will need to run your own PostgreSQL database and configure the connection in django settings. With the heroku deployment described below, the database setup as well as django static files deployment is taken care of automatcially.
 
 Whether following the Heroku setup below or your own deployment, be sure to follow [best practices](https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/) for a production Django app deployment.
 
@@ -102,6 +97,7 @@ heroku config:set GOOGLE_CREDENTIALS=$GOOGLE_CREDENTIALS -a $APP
 rm -rf keyfile.json
 
 # Add addional env variables needed for the app
+heroku config:set USE_HEROKU=True
 heroku config:set GOOGLE_APPLICATION_CREDENTIALS=google-credentials.json
 heroku config:set DEBUG=False -a $APP
 heroku config:set STELLAR_NETWORK=LIVENET -a $APP

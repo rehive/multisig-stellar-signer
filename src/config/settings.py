@@ -198,5 +198,5 @@ LOGGING = {
 }
 
 # Heroku config for database and static files
-if os.environ.get('ENV') != 'local':
+if os.environ.get('USE_HEROKU') in (True, "True", "true"):
     django_heroku.settings(locals())
