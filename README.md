@@ -45,8 +45,13 @@ Whether following the Heroku setup below or your own deployment, be sure to foll
 ### Prerequisite: Google HSM and Service Account creation
 Follow the steps below to create the hardware security module (HSM) on Google Cloud as well as the service account credentials that will be loaded in the MSS in order to access the HSM. Alternatively, both the HSM and the service account can also be created via the Google Cloud Web interface.
 
+#### Install Gcloud CLI
+We recommend following https://cloud.google.com/sdk/docs/install to install and setup the CLI for running any required gcloud commands.
+
+#### Enabling the KSM(HSM) for your Gcloud project
+While in the project you wish to create the KSM. Browse to the Security Section -> Key Management (https://console.cloud.google.com/security/kms/). Then enable the KSM for your project.
+
 ```
-# Create the HSM on Google Cloud
 # Replace the variables below with the name you would like to use for your HSM key ring, HSM key and GCP service account
 # as well as the name of your Google Cloud project and GCP region you would like to create the HSM in.
 
