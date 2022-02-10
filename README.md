@@ -133,3 +133,17 @@ python src/manage.py setup_keypair <user-id> <gcp-project-id> <gcp-region> <gcp-
 # Run the setup command to load the public key of the backup keypair into the signer service:
 python src/manage.py set_backup_key <user-id> <backup-key-stellar-public-key>
 ```
+
+### Configure your Rehive company
+Once you have the signer setup the details will need to be added to your Rehive company with the Stellar Extension enabled. To do this browse to the Swagger API (https://stellar.services.rehive.io/swagger/). This requires your signer service to be publically accesible.
+
+Login via Swagger: Click the padlock on the right of an endpoint and enter "Token YOUR_REHIVE_ADMIN_TOKEN" in the value and hit Authorize.
+
+Update the Stellar Extension configuration: PATCH the `/admin/company/configuration/` endpoint with the following fields
+```
+{ 
+  "external_signer_url": "YOUR_DEPLOYED_SIGNERS_PUBLIC_DNS",
+  "external_signer_key": "YOUR_SIGNER_API_KEY"
+}
+```
+
