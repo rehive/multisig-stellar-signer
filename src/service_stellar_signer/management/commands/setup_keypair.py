@@ -22,12 +22,12 @@ class Command(BaseCommand):
         user = APIUser.objects.get(
             identifier=options['user_id']
         )
+        stellar_keypair = StellarKeypair.random()
         try:
             keypair = Keypair.objects.get(
                 user=user
             )
         except Keypair.DoesNotExist:
-            stellar_keypair = StellarKeypair.random()
             keypair = Keypair.objects.create(
                 public_key=stellar_keypair.public_key,
                 kms_project=options['kms_project'],
