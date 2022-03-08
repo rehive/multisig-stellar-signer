@@ -27,6 +27,7 @@ class Command(BaseCommand):
             keypair = Keypair.objects.get(
                 user=user
             )
+            print('Keypair already exists')
         except Keypair.DoesNotExist:
             keypair = Keypair.objects.create(
                 public_key=stellar_keypair.public_key,
@@ -36,5 +37,5 @@ class Command(BaseCommand):
                 kms_key=options['kms_key'],
                 user=user,
             )
-        keypair.set_encrypted_private_key(stellar_keypair.secret)
-        print('Keypair created and setup. Your hotwallet address is: ' + str(stellar_keypair.public_key))
+            keypair.set_encrypted_private_key(stellar_keypair.secret)
+            print('Keypair created and setup. Your hotwallet address is: ' + str(stellar_keypair.public_key))
