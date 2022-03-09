@@ -122,7 +122,7 @@ heroku run bash -a $APP
 python src/manage.py migrate
 
 # Create a new user on the signer service
-python src/manage.py create_user <your-email> <your-username> <your-password>
+python src/manage.py create_user <your-username> <your-email> <your-password>
 # Securely store the API token and User ID (E.g. in a password manager)
 
 # Run the setup command to create a signing key encrypted by the HSM
