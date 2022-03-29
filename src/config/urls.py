@@ -52,5 +52,4 @@ urlpatterns = [
             namespace='service_stellar_signer'
         )
     ),
-    re_path(r'^admin/', admin.site.urls),
 ]
