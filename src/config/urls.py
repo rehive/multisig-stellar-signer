@@ -17,9 +17,7 @@ schema_view = get_schema_view(
       title="Stellar Signer Service API",
       default_version='v1',
       description="Start by clicking Authorize and adding the header: "
-       "Token <your-api-key>. The user endpoints require a normal "
-       "rehive user token returned by Rehive's /auth/login/ or "
-       "/auth/register/ endpoints."
+       "Token <your-api-key>."
    ),
    #validators=['flex', 'ssv'],
    public=True,

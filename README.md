@@ -10,6 +10,7 @@ Once deployed, you will run through the configuration steps to create the Stella
 
 Whenever the Rehive Stellar Extension creates a transaction on behalf of your end-users, it will sign the transaction using it's own key and then forward it to your self-hosted MSS which will add the second signature. This means that Rehive is unable to initiate the transfer of end-user funds without your approval via the MSS.
 
+
 ## Running locally
 Create a test HSM on Google Cloud and a test service account as described in the "Prerequisite: Google HSM and Service Account creation" section below. Download a keyfile associated with that service account for local use. Don't use the same HSM and service account for your production setup.
 
@@ -35,6 +36,19 @@ Run the local server
 ./src/manage.py runserver
 ```
 Configure the service as described in the "Configuration: Initial Setup" section below.
+
+
+## Deployment prerequisites
+Before starting the deployment setup it is required to generate and store a backup Stellar private/public keypair. This should be done by the entity that intends on holding custody for the Hot Wallet funds. The *public address* of this keypair is required to complete the setup of the service.
+
+To generate the Stellar keypair we recommend doing this on a secure hardware wallet as follows:
+
+1. Connect your hardware wallet. If using a Ledger, open the Stellar App on the device
+2. Navigate to the official Stellar Account Viewer application: https://accountviewer.stellar.org/#!/
+3. Deselect the “Use default account” option and ensure that the derivation input field is set to an unused one example 44'/148'/1' (The final digit is the one that should change)
+4. Store the derivation path with a note that it is your Hot Wallet backup
+4. Click “Sign in with Ledger” or “Sign in with Trezor”
+5. Make a note of the public address displayed as “Your Stellar public key.” This should be stored with the derivation path.
 
 
 ## Deployment
