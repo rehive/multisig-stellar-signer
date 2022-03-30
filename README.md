@@ -119,8 +119,8 @@ rm -rf keyfile.json
 heroku config:set USE_HEROKU=True
 heroku config:set GOOGLE_APPLICATION_CREDENTIALS=google-credentials.json
 heroku config:set DEBUG=False -a $APP
-heroku config:set STELLAR_NETWORK=LIVENET -a $APP
-heroku config:set HORIZON_URL=https://horizon.stellar.org -a $APP
+heroku config:set STELLAR_NETWORK=LIVENET -a $APP or heroku config:set STELLAR_NETWORK=TESTNET -a $APP
+heroku config:set HORIZON_URL=https://horizon.stellar.org -a $APP or heroku config:set HORIZON_URL=https://horizon-testnet.stellar.org -a $APP
 heroku config:set DJANGO_SECRET=<random-generated-string> -a $APP
 
 # Deploy
