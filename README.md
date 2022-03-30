@@ -125,7 +125,7 @@ heroku config:set DJANGO_SECRET=<random-generated-string> -a $APP
 
 # Deploy
 git push heroku master
-# or git push heroku branch-name:main
+# or git push heroku main
 ```
 
 ### Configuration: Initial Setup
