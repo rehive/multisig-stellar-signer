@@ -161,3 +161,9 @@ Update the Stellar Extension configuration: PATCH the `/admin/company/configurat
 }
 ```
 
+### Disabling signing
+If at any point you want to dissallow signing the following command can be run on your signing service:
+```
+python src/manage.py signing_enabled YOUR_USER_ID false 
+```
+
