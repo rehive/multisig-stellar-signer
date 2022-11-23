@@ -132,33 +132,27 @@ git push heroku master
 ```
 heroku run bash -a $APP
 
-# Run the initial database migrations
+# 1. Run the initial database migrations
 python src/manage.py migrate
 
-# Create a new user on the signer service
+# 2. Create a new user on the signer service
 python src/manage.py create_user <your-username> <your-email> <your-password>
 # Securely store the API token and User ID (E.g. in a password manager)
 
-# Run the setup command to create a signing key encrypted by the HSM
+# 3. Run the setup command to create a signing key encrypted by the HSM
 python src/manage.py setup_keypair <user-id> <gcp-project-id> <gcp-region> <gcp-hsm-keyring> <gcp-hsm-key>
-# Note down the signer service public key for future reference
+# Note down the signer service public key for future reference. This account needs to be funded with at least 2.5XLM
 
-# Create a secure Stellar keypair (e.g. on a Hardware Wallet or offline computer) and store it securely as the backup key for the multisig wallet.
+# 4. Create a secure Stellar keypair (e.g. on a Hardware Wallet or offline computer) and store it securely as the backup key for the multisig wallet.
 # Run the setup command to load the public key of the backup keypair into the signer service:
 python src/manage.py set_backup_key <user-id> <backup-key-stellar-public-key>
 ```
+**Important Note**: The Stellar account returned on step 3 needs to be funded with at least 2.5 XLM to allow it to broadcast the multisig setup successfully in the upcoming configuration steps.
 
 ### Configure your Rehive company
-Once you have the signer setup the details will need to be added to your Rehive company with the Stellar Extension enabled. To do this browse to the Swagger API (https://stellar.services.rehive.io/swagger/). This requires your signer service to be publically accesible.
+Once you have the signer setup the details will need to be added to your Rehive company with the Stellar Extension enabled. This can be done by going to the Stellar Extension section of the dashboard(https://dashboard.rehive.com/). Then through to the Settings -> Multisig Signer section.
 
-Login via Swagger: Click the padlock on the right of an endpoint and enter "Token YOUR_REHIVE_ADMIN_TOKEN" in the value and hit Authorize.
-
-Update the Stellar Extension configuration: PATCH the `/admin/company/configuration/` endpoint with the following fields
-```
-{ 
-  "external_signer_url": "YOUR_DEPLOYED_SIGNERS_PUBLIC_DNS",
-  "external_signer_key": "YOUR_SIGNER_API_KEY"
-}
+You will first need to enter both your signer publicly accessible URL and the API key generated during Step 2 of the initial deployment setup. Once done hit the Enable MSS button. If successful the Stellar Extension will communicate with your deployed signer and handle the multisig setup.
 ```
 
 ### Disabling signing
