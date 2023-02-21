@@ -153,7 +153,6 @@ python src/manage.py set_backup_key <user-id> <backup-key-stellar-public-key>
 Once you have the signer setup the details will need to be added to your Rehive company with the Stellar Extension enabled. This can be done by going to the Stellar Extension section of the dashboard(https://dashboard.rehive.com/). Then through to the Settings -> Multisig Signer section.
 
 You will first need to enter both your signer publicly accessible URL and the API key generated during Step 2 of the initial deployment setup. Once done hit the Enable MSS button. If successful the Stellar Extension will communicate with your deployed signer and handle the multisig setup.
-```
 
 ### Disabling signing
 If at any point you want to dissallow signing the following command can be run on your signing service:
