@@ -74,7 +74,7 @@ KEY=test-signer-encryption-key
 LOCATION=europe-west4
 PROJECT=test-project
 
-cloud kms keyrings create $KEYRING --location $LOCATION --project $PROJECT
+gcloud kms keyrings create $KEYRING --location $LOCATION --project $PROJECT
 gcloud kms keys create $KEY --keyring $KEYRING --project $PROJECT --protection-level=hsm --purpose=encryption --location $LOCATION
 
 # Create the service account on Google Cloud with encrypt/decrypt permissions on the HSM
