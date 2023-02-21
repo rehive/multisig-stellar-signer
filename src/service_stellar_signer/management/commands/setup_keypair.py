@@ -38,6 +38,6 @@ class Command(BaseCommand):
                 user=user,
             )
             keypair.set_encrypted_private_key(stellar_keypair.secret)
-            print('Keypair created and setup. Your hotwallet address is: ' + str(stellar_keypair.public_key))
+            print('Keypair created and setup. Your hotwallet address is: ' + str(stellar_keypair.public_key) + " Please fund this account with at least 2.5 XLM")
             print('Your encrypted private key is: ' + str(keypair.encrypted_private_key))
             print('Please store the encrypted private key in a secure location as a backup')
