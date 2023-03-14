@@ -62,13 +62,14 @@ class AdminWalletSerializer(BaseModelSerializer):
                 'No keypair setup.'
             )
 
-        wallet = Wallet.objects.create(
-            **validated_data,
-            keypair=keypair,
-            user=user,
-            backup_public_key=backup_public_key
-        )
-        wallet.setup_multisig()
+        with transaction.atomic():
+            wallet = Wallet.objects.create(
+                **validated_data,
+                keypair=keypair,
+                user=user,
+                backup_public_key=backup_public_key
+            )
+            wallet.setup_multisig()
         return wallet
 
 
