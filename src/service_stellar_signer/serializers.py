@@ -8,9 +8,19 @@ from rest_framework.exceptions import APIException
 from django.core.exceptions import ObjectDoesNotExist
 
 from service_stellar_signer.models import Keypair, Transaction, Wallet, APIUser
+from service_stellar_signer.status_checker import StatusChecker
 
 from drf_rehive_extras.fields import TimestampField, EnumField
 from service_stellar_signer.enums import TransactionStatus
+
+
+class StatusSerializer(serializers.Serializer):
+    diagnostics = serializers.SerializerMethodField()
+
+    def get_diagnostics(self, instance):
+        print('running this')
+        sc = StatusChecker()
+        return sc.return_full_diagnostic_dict()
 
 
 class AdminWalletSerializer(BaseModelSerializer):
