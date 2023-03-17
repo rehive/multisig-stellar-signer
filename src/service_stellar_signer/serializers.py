@@ -1,4 +1,5 @@
 import uuid
+import os
 
 from rehive import Rehive, APIException
 from rest_framework import serializers
@@ -16,11 +17,14 @@ from service_stellar_signer.enums import TransactionStatus
 
 class StatusSerializer(serializers.Serializer):
     diagnostics = serializers.SerializerMethodField()
+    network = serializers.SerializerMethodField()
 
     def get_diagnostics(self, instance):
-        print('running this')
         sc = StatusChecker()
         return sc.return_full_diagnostic_dict()
+    
+    def get_network(self, instance):
+        return os.environ.get('STELLAR_NETWORK')
 
 
 class AdminWalletSerializer(BaseModelSerializer):
